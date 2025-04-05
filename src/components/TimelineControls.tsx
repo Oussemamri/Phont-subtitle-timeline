@@ -11,10 +11,8 @@ export default function TimelineControls({
   onPlayPause,
   onAnimate,
   currentTime,
-  totalDuration
+  totalDuration,
 }: TimelineControlsProps) {
-  
-  // Format time as MM:SS
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -22,24 +20,22 @@ export default function TimelineControls({
   };
 
   return (
-    <div className="flex items-center justify-between py-2">
+    <div className="flex items-center justify-between py-4">
       <div className="flex space-x-4">
         <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
           onClick={onPlayPause}
         >
           {isPlaying ? '❚❚ Pause' : '▶ Play'}
         </button>
-        
         <button
-          className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition"
+          className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
           onClick={onAnimate}
         >
-          Animate Subtitle
+          Animate
         </button>
       </div>
-      
-      <div className="text-sm">
+      <div className="text-white text-sm">
         {formatTime(currentTime)} / {formatTime(totalDuration)}
       </div>
     </div>

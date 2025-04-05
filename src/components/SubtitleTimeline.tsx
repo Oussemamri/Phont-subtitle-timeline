@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SubtitleDisplay from '@/components/SubtitleDisplay';
 import TimelineControls from '@/components/TimelineControls';
 import TimelineTrack from '@/components/TimelineTrack';
@@ -16,6 +16,13 @@ export default function SubtitleTimeline() {
   const [isAnimationEnabled, setIsAnimationEnabled] = useState(true);
 
   const totalDuration = Math.max(...subtitlesData.map((subtitle) => subtitle.end_time));
+
+  const triggerAnimation = useCallback(() => {
+    if (isAnimationEnabled) {
+      setAnimateSubtitle(false); // Reset animation state
+      setTimeout(() => setAnimateSubtitle(true), 10); // Reapply animation state with a delay
+    }
+  }, [isAnimationEnabled]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -42,15 +49,7 @@ export default function SubtitleTimeline() {
         triggerAnimation(); // Trigger animation when subtitle changes
       }
     }
-  }, [currentTime, currentSubtitleIndex, isAnimationEnabled]);
-
-  // Function to reliably trigger animation
-  const triggerAnimation = () => {
-    if (isAnimationEnabled) {
-      setAnimateSubtitle(false); // Reset animation state
-      setTimeout(() => setAnimateSubtitle(true), 10); // Reapply animation state with a delay
-    }
-  };
+  }, [currentTime, currentSubtitleIndex, isAnimationEnabled, triggerAnimation]);
 
   const toggleAnimation = () => {
     setIsAnimationEnabled((prev) => {

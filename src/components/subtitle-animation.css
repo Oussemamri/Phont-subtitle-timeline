@@ -1,5 +1,47 @@
 .animate-subtitle {
   animation: subtitleAnimation 1.5s ease-out forwards;
+  display: inline-block;
+}
+
+/* Basic state for all characters */
+.char {
+  display: inline-block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Animation state for characters when parent has animate-subtitle class */
+.animate-subtitle .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) scale(0.5);
+  animation: charAnimation 0.8s cubic-bezier(0.16, 1.08, 0.38, 0.98) forwards;
+}
+
+/* Create different variations for characters */
+.animate-subtitle .char:nth-child(odd) {
+  animation-duration: 0.7s;
+}
+
+.animate-subtitle .char:nth-child(even) {
+  animation-duration: 0.9s;
+}
+
+.animate-subtitle .char:nth-child(3n) {
+  animation-delay: 0.05s;
+  transform: translateY(35px) scale(0.55);
+}
+
+.animate-subtitle .char:nth-child(3n+1) {
+  animation-delay: 0.1s;
+}
+
+.animate-subtitle .char:nth-child(5n) {
+  transform: translateY(45px) scale(0.45);
+}
+
+.animate-subtitle .char:nth-child(7n) {
+  animation-duration: 1s;
 }
 
 @keyframes subtitleAnimation {
@@ -26,5 +68,29 @@
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes charAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.2);
+  }
+  40% {
+    transform: translateY(4px) scale(0.95);
+  }
+  60% {
+    transform: translateY(-2px) scale(1.05);
+  }
+  80% {
+    transform: translateY(0) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

@@ -1,17 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import SubtitleDisplay from './SubtitleDisplay';
-import TimelineControls from './TimelineControls';
-import TimelineTrack from './TimelineTrack';
+import SubtitleDisplay from '@/components/SubtitleDisplay';
+import TimelineControls from '@/components/TimelineControls';
+import TimelineTrack from '@/components/TimelineTrack';
 import subtitlesData from '../../data/Output_from-ourApi.json';
+import { SubtitleType } from '@/models/types';
 
 export default function SubtitleTimeline() {
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [animateSubtitle, setAnimateSubtitle] = useState(false);
   const [currentSubtitleIndex, setCurrentSubtitleIndex] = useState(-1);
-  const [displayedSubtitles, setDisplayedSubtitles] = useState<any[]>([]);
+  const [displayedSubtitles, setDisplayedSubtitles] = useState<SubtitleType[]>([]);
 
   const totalDuration = Math.max(...subtitlesData.map((subtitle) => subtitle.end_time));
 

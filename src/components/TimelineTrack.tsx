@@ -1,5 +1,6 @@
+import { SubtitleType } from '@/models/types';
 interface TimelineTrackProps {
-  subtitles: any[];
+  subtitles: SubtitleType[];
   currentTime: number;
   totalDuration: number;
   onSeek: (time: number) => void;

@@ -4,6 +4,8 @@ interface TimelineControlsProps {
   onAnimate: () => void;
   currentTime: number;
   totalDuration: number;
+  isAnimationEnabled: boolean;
+  toggleAnimation: () => void;
 }
 
 export default function TimelineControls({
@@ -12,6 +14,8 @@ export default function TimelineControls({
   onAnimate,
   currentTime,
   totalDuration,
+  isAnimationEnabled, // Keep this prop for potential future use
+  toggleAnimation, // Keep this prop for potential future use
 }: TimelineControlsProps) {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);

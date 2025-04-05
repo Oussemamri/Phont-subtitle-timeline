@@ -37,10 +37,15 @@ export default function SubtitleTimeline() {
     );
     if (newIndex !== -1 && newIndex !== currentSubtitleIndex) {
       setCurrentSubtitleIndex(newIndex);
-      setAnimateSubtitle(true);
-      setTimeout(() => setAnimateSubtitle(false), 1500);
+      triggerAnimation(); // Trigger animation when subtitle changes
     }
   }, [currentTime, currentSubtitleIndex]);
+
+  // Function to reliably trigger animation
+  const triggerAnimation = () => {
+    setAnimateSubtitle(false); // Reset animation state
+    setTimeout(() => setAnimateSubtitle(true), 10); // Reapply animation state with a delay
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -55,7 +60,7 @@ export default function SubtitleTimeline() {
         <TimelineControls
           isPlaying={isPlaying}
           onPlayPause={() => setIsPlaying((prev) => !prev)}
-          onAnimate={() => setAnimateSubtitle(true)}
+          onAnimate={triggerAnimation} // Use the refined triggerAnimation function
           currentTime={currentTime}
           totalDuration={totalDuration}
         />

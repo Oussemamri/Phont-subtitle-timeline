@@ -16,11 +16,15 @@ export default function SubtitleDisplay({ subtitles, animate }: SubtitleDisplayP
     // When subtitles change, immediately show them
     setVisibleSubtitles(subtitles);
     
-    // Only trigger the animation when requested
+    // Trigger the animation when requested
     if (animate) {
       setAnimationClass('animate-subtitle');
-      const timer = setTimeout(() => setAnimationClass(''), 2500);
+      const timer = setTimeout(() => {
+        setAnimationClass(''); // Remove the class after the animation duration
+      }, 1500); // Match the animation duration in CSS
       return () => clearTimeout(timer);
+    } else {
+      setAnimationClass(''); // Ensure the animation class is removed when animate is false
     }
   }, [subtitles, animate]);
 

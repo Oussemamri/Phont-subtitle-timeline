@@ -11,7 +11,6 @@ interface TimelineControlsProps {
 export default function TimelineControls({
   isPlaying,
   onPlayPause,
-  onAnimate,
   currentTime,
   totalDuration,
 }: TimelineControlsProps) {
@@ -30,13 +29,6 @@ export default function TimelineControls({
         >
           {isPlaying ? '❚❚ Pause' : '▶ Play'}
         </button>
-        <button
-          className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
-          onClick={onAnimate}
-        >
-          Animate
-        </button>
-        
       </div>
       <div className="text-white text-sm">
         {formatTime(currentTime)} / {formatTime(totalDuration)}
